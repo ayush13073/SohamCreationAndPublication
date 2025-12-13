@@ -25,103 +25,103 @@ const db = getFirestore(app);
 let inventoryCache = [];
 
 // ==========================================
-[span_0](start_span)// 2. BOOK INVENTORY DATA (From Uploaded Images)[span_0](end_span)
+// 2. BOOK INVENTORY DATA (All 75 Books)
 // ==========================================
 const pdfBooksData = [
     // --- अध्यात्मिक (Spiritual) ---
-    { title: "Soliv Sukh", price: 250, category: "Spiritual" },
-    { title: "Atmaram-Amrutanubhav", price: 150, category: "Spiritual" },
-    { title: "Samarth Ek Patrakar", price: 125, category: "Biography" },
-    { title: "Samarth Ramdasanchi Vyavasthapan Drushti", price: 150, category: "Management" },
-    { title: "Vishwache Aart", price: 200, category: "Biography" },
-    { title: "Shriramkrishna", price: 300, category: "Biography" },
-    { title: "Majha Atmavikas Majhya Hati", price: 250, category: "Self-Help" },
-    { title: "Ramayan: Mahatva Ani Vyakti Vishesh (Marathi)", price: 150, category: "Religious" },
-    { title: "Ramayan: Mahatva Ani Vyakti Vishesh (Hindi)", price: 200, category: "Religious" },
-    { title: "Ramayan: Mahatva Ani Vyakti Vishesh (English)", price: 200, category: "Religious" },
-    { title: "Savitri Darshan", price: 100, category: "Poetry" },
-    { title: "Maharishi Valmiki (Marathi)", price: 80, category: "Biography" },
-    { title: "Maharishi Valmiki (Hindi)", price: 100, category: "Biography" },
-    { title: "Maharishi Valmiki (English)", price: 100, category: "Biography" },
-    { title: "Samarth Krupechi Vachane", price: 150, category: "Spiritual" },
-    { title: "Saptachakravedh", price: 100, category: "Spiritual" },
-    { title: "Acharya Panchapradeep", price: 200, category: "Religious" },
+    { title: "Soliv Sukh (सोलीव सुख)", price: 250, category: "Spiritual" },
+    { title: "Atmaram-Amrutanubhav (आत्माराम-अमृतानुभव)", price: 150, category: "Spiritual" },
+    { title: "Samarth Ek Patrakar (समर्थ एक पत्रकार)", price: 125, category: "Biography" },
+    { title: "Samarth Ramdasanchi Vyavasthapan Drushti (समर्थ रामदासांची व्यवस्थापन दृष्टी)", price: 150, category: "Management" },
+    { title: "Vishwache Aart (विश्वाचे आर्त)", price: 200, category: "Biography" },
+    { title: "Shriramkrishna (श्रीरामकृष्ण)", price: 300, category: "Biography" },
+    { title: "Majha Atmavikas Majhya Hati (माझा आत्मविकास माझ्या हाती)", price: 250, category: "Self-Help" },
+    { title: "Ramayan: Mahatva Ani Vyakti Vishesh - Marathi (रामायण)", price: 150, category: "Religious" },
+    { title: "Ramayan: Mahatva Ani Vyakti Vishesh - Hindi", price: 200, category: "Religious" },
+    { title: "Ramayan: Mahatva Ani Vyakti Vishesh - English", price: 200, category: "Religious" },
+    { title: "Savitri Darshan (सावित्री दर्शन)", price: 100, category: "Poetry" },
+    { title: "Maharishi Valmiki - Marathi (महर्षी वाल्मिकी)", price: 80, category: "Biography" },
+    { title: "Maharishi Valmiki - Hindi", price: 100, category: "Biography" },
+    { title: "Maharishi Valmiki - English", price: 100, category: "Biography" },
+    { title: "Samarth Krupechi Vachane (समर्थ कृपेचि वचने)", price: 150, category: "Spiritual" },
+    { title: "Saptachakravedh (सप्तचक्रवेध)", price: 100, category: "Spiritual" },
+    { title: "Acharya Panchapradeep (आचार्य पंचप्रदीप)", price: 200, category: "Religious" },
 
     // --- कादंबरी (Novel) ---
-    { title: "Bhaskarayana", price: 350, category: "Novel" },
-    { title: "Ojaswi", price: 200, category: "Novel" },
-    { title: "Kalyatri", price: 250, category: "Novel" },
-    { title: "Trima Kasi (Marathi)", price: 350, category: "Novel" },
-    { title: "Trima Kasi (English)", price: 350, category: "Novel" },
-    { title: "Shikhandi", price: 200, category: "Novel" },
-    { title: "Garbhit Hunkar", price: 500, category: "Novel" },
-    { title: "Daityasutra", price: 350, category: "Horror/Novel" },
-    { title: "Baykochi Ekasathi Navryachi Shashti", price: 250, category: "Humor" },
+    { title: "Bhaskarayana (भास्करायण)", price: 350, category: "Novel" },
+    { title: "Ojaswi (ओजस्वी)", price: 200, category: "Novel" },
+    { title: "Kalyatri (कालयात्री)", price: 250, category: "Novel" },
+    { title: "Trima Kasi - Marathi (त्रिमा कासी)", price: 350, category: "Novel" },
+    { title: "Trima Kasi - English", price: 350, category: "Novel" },
+    { title: "Shikhandi (शिखंडी)", price: 200, category: "Novel" },
+    { title: "Garbhit Hunkar (गर्भित हुंकार)", price: 500, category: "Novel" },
+    { title: "Daityasutra (दैत्यसूत्र)", price: 350, category: "Horror" },
+    { title: "Baykochi Ekasathi Navryachi Shashti (बायकोची एकसष्टी...)", price: 250, category: "Humor" },
 
     // --- कथासंग्रह (Stories) ---
-    { title: "Naivedya", price: 150, category: "Stories" },
-    { title: "Bindhast", price: 300, category: "Stories" },
-    { title: "Urle Urat Kahi", price: 200, category: "Stories" },
+    { title: "Naivedya (नैवेद्य)", price: 150, category: "Stories" },
+    { title: "Bindhast (बिनधास्त)", price: 300, category: "Stories" },
+    { title: "Urle Urat Kahi (उरले उरात काही)", price: 200, category: "Stories" },
 
     // --- ललित लेख (Articles) ---
-    { title: "Ajunahi Chandrat Aahe", price: 200, category: "Articles" },
-    { title: "Chandane Shabdafulanche", price: 200, category: "Articles" },
-    { title: "Anandanidhan", price: 200, category: "Articles" },
+    { title: "Ajunahi Chandrat Aahe (अजूनही चांदरात आहे)", price: 200, category: "Articles" },
+    { title: "Chandane Shabdafulanche (चांदणे शब्दफुलांचे)", price: 200, category: "Articles" },
+    { title: "Anandanidhan (आनंदनिधान)", price: 200, category: "Articles" },
 
     // --- प्रवासवर्णन (Travelogue) ---
-    { title: "Road to Holland (Marathi)", price: 300, category: "Travel" },
-    { title: "Road to Holland (English)", price: 300, category: "Travel" },
-    { title: "Road to Holland Particha Pravas", price: 300, category: "Travel" },
-    { title: "Road to Dusseldorf", price: 350, category: "Travel" },
+    { title: "Road to Holland - Marathi (रोड टू हॉलंड)", price: 300, category: "Travel" },
+    { title: "Road to Holland - English", price: 300, category: "Travel" },
+    { title: "Road to Holland Particha Pravas (परतीचा प्रवास)", price: 300, category: "Travel" },
+    { title: "Road to Dusseldorf (रोड टू ड्युसेलडॉर्फ)", price: 350, category: "Travel" },
 
     // --- बालकाथासंग्रह (Children's Stories) ---
-    { title: "Lal Dinank", price: 150, category: "Children" },
-    { title: "Guni Mule", price: 75, category: "Children" },
-    { title: "Vidnyan Balkatha", price: 75, category: "Children" },
-    { title: "Shastradnyanchya Katha", price: 80, category: "Children" },
+    { title: "Lal Dinank (लाल दिनांक)", price: 150, category: "Children" },
+    { title: "Guni Mule (गुणी मुले)", price: 75, category: "Children" },
+    { title: "Vidnyan Balkatha (विज्ञान बालकथा)", price: 75, category: "Children" },
+    { title: "Shastradnyanchya Katha (शास्त्रज्ञांच्या कथा)", price: 80, category: "Children" },
     { title: "Tenali Ram Ani Birbalachya Goshti", price: 80, category: "Children" },
-    { title: "Mantryanni Ghetli Shala", price: 80, category: "Children" },
+    { title: "Mantryanni Ghetli Shala (मंत्र्यांनी घेतली शाळा)", price: 80, category: "Children" },
     { title: "Raja Maharajanchya Goshti", price: 80, category: "Children" },
-    { title: "Promise Pariche", price: 100, category: "Children" },
+    { title: "Promise Pariche (प्रॉमिस परीचे)", price: 100, category: "Children" },
     { title: "Chingi Ani Jaduche Phulpakhru", price: 100, category: "Children" },
     { title: "English Balkatha Sangrah", price: 80, category: "Children" },
 
     // --- कुमारसांठी पुस्तके (Young Adult) ---
-    { title: "Pakshigatha", price: 150, category: "Nature" },
-    { title: "Dhagdhagatya Samidha", price: 250, category: "History" },
-    { title: "Nisargachi Navalai Part 1", price: 300, category: "Nature" },
-    { title: "Nisargachi Navalai Part 2", price: 250, category: "Nature" },
-    { title: "Subhashit Saurabh", price: 150, category: "Literature" },
-    { title: "Subhashit Parimal", price: 150, category: "Literature" },
-    { title: "Ranjak Vidnyan", price: 150, category: "Science" },
-    { title: "Ase Ghadle Shastra", price: 200, category: "Science" },
-    { title: "The Students Syndrome", price: 125, category: "Science/Edu" },
+    { title: "Pakshigatha (पक्षिगाथा)", price: 150, category: "Nature" },
+    { title: "Dhagdhagatya Samidha (धगधगत्या समिधा)", price: 250, category: "History" },
+    { title: "Nisargachi Navalai Part 1 (निसर्गाची नवलाई १)", price: 300, category: "Nature" },
+    { title: "Nisargachi Navalai Part 2 (निसर्गाची नवलाई २)", price: 250, category: "Nature" },
+    { title: "Subhashit Saurabh (सुभाषित सौरभ)", price: 150, category: "Literature" },
+    { title: "Subhashit Parimal (सुभाषित परिमल)", price: 150, category: "Literature" },
+    { title: "Ranjak Vidnyan (रंजक विज्ञान)", price: 150, category: "Science" },
+    { title: "Ase Ghadle Shastra (असे घडले शास्त्रज्ञ)", price: 200, category: "Science" },
+    { title: "The Students Syndrome", price: 125, category: "Edu" },
 
     // --- काव्यविषयक (Poetry) ---
     { title: "Marathi Santanchya Hindi Bhaktirachana", price: 300, category: "Poetry" },
-    { title: "Abhijat Kavyachi Olakh", price: 200, category: "Poetry" },
-    { title: "Kavyanubhuti", price: 250, category: "Poetry" },
-    { title: "Lavani", price: 200, category: "Art/Poetry" },
+    { title: "Abhijat Kavyachi Olakh (अभिजात काव्याची ओळख)", price: 200, category: "Poetry" },
+    { title: "Kavyanubhuti (काव्यानुभूती)", price: 250, category: "Poetry" },
+    { title: "Lavani (लावणी)", price: 200, category: "Art" },
 
     // --- इतर (Other) ---
-    { title: "1965 Cha Vijay", price: 100, category: "Defense" },
-    { title: "Dharmanishtha Savarkar", price: 150, category: "Biography" },
-    { title: "Savarkar Samjun Ghetana", price: 200, category: "Biography" },
-    { title: "Shri Dnyaneshwaritil Pratima Srushti Ani Vidnyan", price: 200, category: "Spirituality/Science" },
+    { title: "1965 Cha Vijay (१९६५ चा विजय)", price: 100, category: "Defense" },
+    { title: "Dharmanishtha Savarkar (धर्मनिष्ठ सावरकर)", price: 150, category: "Biography" },
+    { title: "Savarkar Samjun Ghetana (सावरकर समजून घेताना)", price: 200, category: "Biography" },
+    { title: "Shri Dnyaneshwaritil Pratima Srushti", price: 200, category: "Spirituality" },
     { title: "Mahabharatatil Aparichit Goshti", price: 200, category: "Mythology" },
-    { title: "Guptaheranche Vishwa", price: 200, category: "Mystery" },
-    { title: "Anandayatri Rabindranath", price: 300, category: "Biography" },
-    { title: "Pustakatil Manasa", price: 200, category: "Literature" },
-    { title: "Aarti (Shabdarth, Bhavarth, Tatvarth)", price: 100, category: "Religious" },
+    { title: "Guptaheranche Vishwa (गुप्तहेरांचे विश्व)", price: 200, category: "Mystery" },
+    { title: "Anandayatri Rabindranath (आनंदयात्री रवींद्रनाथ)", price: 300, category: "Biography" },
+    { title: "Pustakatil Manasa (पुस्तकातील माणसं)", price: 200, category: "Literature" },
+    { title: "Aarti - Shabdarth, Bhavarth (आरती)", price: 100, category: "Religious" },
 
-    // --- ऋतुपर्ण विशेषांक (Specials) ---
-    { title: "Shriram Visheshank", price: 200, category: "Magazine" },
-    { title: "Sant Vangmay Visheshank", price: 250, category: "Magazine" },
+    // --- ऋतुपर्ण विशेषांक (Magazines) ---
+    { title: "Shriram Visheshank (श्रीराम विशेषांक)", price: 200, category: "Magazine" },
+    { title: "Sant Vangmay Visheshank (संत वाङ्मय)", price: 250, category: "Magazine" },
     { title: "Paryatan Ani Paryavaran Visheshank", price: 250, category: "Magazine" },
-    { title: "Swarsaj Visheshank", price: 350, category: "Magazine" },
+    { title: "Swarsaj Visheshank (स्वरसाज)", price: 350, category: "Magazine" },
     { title: "Chhatrapati Shivaji Maharaj Visheshank", price: 300, category: "Magazine" },
-    { title: "Hasyanand Visheshank", price: 250, category: "Magazine" },
-    { title: "Katha Visheshank", price: 250, category: "Magazine" }
+    { title: "Hasyanand Visheshank (हास्यानंद)", price: 250, category: "Magazine" },
+    { title: "Katha Visheshank (कथा विशेषांक)", price: 250, category: "Magazine" }
 ];
 
 // ==========================================
@@ -146,7 +146,7 @@ window.uploadAllBooks = async () => {
         });
 
         await batch.commit();
-        alert("Success! All books uploaded to database.");
+        alert("Success! All 75 books uploaded to database.");
         location.reload(); 
     } catch (error) {
         console.error("Error uploading: ", error);
@@ -232,8 +232,8 @@ if (!document.getElementById("analyticsPage")) {
                 const title = opt.innerText;
 
                 document.getElementById("bookTitle").innerText = title;
-                // Still showing price here so you know what to charge, 
-                // but it won't show in the recorded list later.
+                // We show price here so YOU know what to charge, 
+                // but it won't be saved in the public visual log.
                 document.getElementById("bookPrice").innerText = "₹" + price;
                 document.getElementById("bookCategory").innerText = cat;
                 document.getElementById("previewImg").src = `https://placehold.co/100x150?text=${title.substring(0,3)}`;
@@ -243,7 +243,7 @@ if (!document.getElementById("analyticsPage")) {
         });
     }
 
-    // E. Total Calculation
+    // E. Total Calculation (For your reference only)
     const qtyInput = document.getElementById("qtyInput");
     if (qtyInput) qtyInput.addEventListener("input", updateTotal);
 
@@ -269,6 +269,8 @@ if (!document.getElementById("analyticsPage")) {
         statusMsg.innerText = "Saving to database...";
 
         try {
+            // We still save the price to the database for YOUR records,
+            // but we won't display it in the app's list.
             const saleData = {
                 bookId: opt.value,
                 bookTitle: opt.innerText,
@@ -295,13 +297,14 @@ if (!document.getElementById("analyticsPage")) {
         }
     }
 
-    // MODIFIED: Removes the money part from the list item
+    // MODIFIED: Removes the money part from the visible list
     function addRecentSaleToList(sale) {
         const list = document.getElementById("recentSalesList");
         const li = document.createElement("li");
+        // Shows only Title and Quantity
         li.innerHTML = `
-            <span>${sale.bookTitle} (x${sale.quantity})</span>
-            <span class="amount" style="display:none;">HIDDEN</span> 
+            <span>${sale.bookTitle}</span>
+            <span class="amount" style="color:#64748b;">x${sale.quantity}</span> 
         `;
         list.prepend(li);
     }
@@ -322,8 +325,6 @@ if (document.getElementById("analyticsPage")) {
         let genreCounts = {};
         let totalSold = 0;
         
-        // Removed revenue calculation variable logic here
-
         snapshot.forEach(doc => {
             const data = doc.data();
             const qty = data.quantity || 1;
@@ -341,10 +342,12 @@ if (document.getElementById("analyticsPage")) {
         // Update Text Summary
         document.getElementById("totalBooksSold").innerText = totalSold;
         
-        // MODIFIED: Hide the Revenue Box logic
+        // MODIFIED: Hide the Revenue Box
+        // This ensures the "Total Revenue" box on the analytics page is invisible
         const revElement = document.getElementById("totalRevenue");
         if(revElement) {
-            revElement.parentElement.style.display = "none"; // Completely hides the box
+            // Find the parent container (stat-box) and hide it
+            revElement.parentElement.style.display = "none"; 
         }
 
         // Prepare Data for Top Items Chart (Top 5)

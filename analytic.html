@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soham Sales Reports</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body id="analyticsPage">
+
+    <div class="app-container">
+        <header>
+            <h1>Sales Reports</h1>
+            <p>Trends & Inventory Analysis</p>
+        </header>
+
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-btn">⬅️ Record Sales</a>
+            <a href="analytics.html" class="nav-btn active">📊 Reports</a>
+        </nav>
+
+        <div class="card">
+            <h2>🏆 Most Sold Items</h2>
+            <div class="chart-wrapper">
+                <canvas id="topItemsChart"></canvas>
+            </div>
+            <p class="insight-text">These are your top 5 bestsellers.</p>
+        </div>
+
+        <div class="card">
+            <h2>📚 Sales by Genre</h2>
+            <div class="chart-wrapper">
+                <canvas id="genreChart"></canvas>
+            </div>
+            <p class="insight-text">Which categories perform the best.</p>
+        </div>
+
+        <div class="card">
+            <h2>Summary</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span id="totalBooksSold">0</span>
+                    <label>Books Sold</label>
+                </div>
+                <div class="stat-box">
+                    <span id="totalRevenue">₹0</span>
+                    <label>Total Revenue</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
+

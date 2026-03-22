@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report - Soham Publication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-indigo-600">Soham Publication</a>
+            <div class="flex space-x-4 overflow-x-auto">
+                <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Home</a>
+                <a href="records.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Records</a>
+                <a href="report.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Report</a>
+                <div id="guest-links">
+                    <a href="login.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Login</a>
+                    <a href="register.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Register</a>
+                </div>
+                <div id="auth-links" class="hidden">
+                    <a href="data-entry.html" id="data-entry-nav" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Data Entry</a>
+                    <button id="logout-btn" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-6">Analytics Report</h2>
+            <div id="loading" class="text-center py-8">Loading data...</div>
+            <div id="charts-container" class="hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Each chart will be added dynamically by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-4 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Soham Creation & Publication</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initAuth, logout } from './js/auth.js';
+        import { loadReport } from './js/report.js';
+        initAuth();
+        document.getElementById('logout-btn')?.addEventListener('click', logout);
+        loadReport();
+    </script>
+</body>
+</html>

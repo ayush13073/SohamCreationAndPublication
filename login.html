@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Soham Publication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-indigo-600">Soham Publication</a>
+            <div class="flex space-x-4 overflow-x-auto">
+                <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Home</a>
+                <a href="records.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Records</a>
+                <a href="report.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Report</a>
+                <div id="guest-links">
+                    <a href="login.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Login</a>
+                    <a href="register.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Register</a>
+                </div>
+                <div id="auth-links" class="hidden">
+                    <a href="data-entry.html" id="data-entry-nav" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Data Entry</a>
+                    <button id="logout-btn" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-16">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow p-8">
+            <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+            <form id="login-form">
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Email</label>
+                    <input type="email" id="login-email" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="login-password" class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-400" required>
+                </div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700">Sign In</button>
+            </form>
+            <p class="text-center text-gray-600 mt-4">Don't have an account? <a href="register.html" class="text-indigo-600 hover:underline">Register</a></p>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-4 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Soham Creation & Publication</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initAuth, login, logout } from './js/auth.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+        import { auth } from './js/firebase-config.js';
+        initAuth();
+
+        const form = document.getElementById('login-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const result = await login(email, password);
+            if (result.success) {
+                window.location.href = 'index.html';
+            } else {
+                alert('Login failed: ' + result.error);
+            }
+        });
+
+        document.getElementById('logout-btn')?.addEventListener('click', logout);
+        // Redirect if already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

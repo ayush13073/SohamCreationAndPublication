@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records - Soham Publication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-indigo-600">Soham Publication</a>
+            <div class="flex space-x-4 overflow-x-auto">
+                <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Home</a>
+                <a href="records.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Records</a>
+                <a href="report.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Report</a>
+                <div id="guest-links">
+                    <a href="login.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Login</a>
+                    <a href="register.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Register</a>
+                </div>
+                <div id="auth-links" class="hidden">
+                    <a href="data-entry.html" id="data-entry-nav" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Data Entry</a>
+                    <button id="logout-btn" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-2xl font-bold mb-4">Sales Records</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full border">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="px-2 py-2 text-left">Book Title</th>
+                            <th class="px-2 py-2 text-center">Qty</th>
+                            <th class="px-2 py-2 text-right">Price/Unit</th>
+                            <th class="px-2 py-2 text-right">Subtotal</th>
+                            <th class="px-2 py-2 text-right">Discount</th>
+                            <th class="px-2 py-2 text-right">Final Amount</th>
+                            <th class="px-2 py-2 text-left">Date/Time</th>
+                            <th class="px-2 py-2 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="records-list">
+                        <tr><td colspan="8" class="text-center py-4">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-4 text-center">
+                <button id="load-more-btn" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 hidden">Load More</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-4 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Soham Creation & Publication</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initAuth, logout } from './js/auth.js';
+        import { loadRecords } from './js/records.js';
+        initAuth();
+        document.getElementById('logout-btn')?.addEventListener('click', logout);
+        loadRecords();
+    </script>
+</body>
+</html>

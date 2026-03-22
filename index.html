@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Soham Creation & Publication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-indigo-600">Soham Publication</a>
+            <div class="flex space-x-4 overflow-x-auto">
+                <a href="index.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Home</a>
+                <a href="records.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Records</a>
+                <a href="report.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Report</a>
+                <div id="guest-links">
+                    <a href="login.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Login</a>
+                    <a href="register.html" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Register</a>
+                </div>
+                <div id="auth-links" class="hidden">
+                    <a href="data-entry.html" id="data-entry-nav" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Data Entry</a>
+                    <button id="logout-btn" class="text-gray-700 hover:text-indigo-600 px-2 py-1">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="hero-gradient text-white py-20">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-5xl font-bold mb-4">Soham Creation & Publication</h1>
+                <p class="text-xl mb-8">Discover a world of knowledge and inspiration</p>
+                <a href="data-entry.html" class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Get Started</a>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 py-16">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-indigo-600 text-4xl mb-4">📚</div>
+                    <h3 class="text-xl font-semibold mb-2">75+ Unique Books</h3>
+                    <p class="text-gray-600">Wide range of categories from spiritual to children's stories.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-indigo-600 text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-semibold mb-2">Real-time Analytics</h3>
+                    <p class="text-gray-600">Track sales trends and customer preferences with 20+ reports.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-indigo-600 text-4xl mb-4">🔒</div>
+                    <h3 class="text-xl font-semibold mb-2">Secure & Private</h3>
+                    <p class="text-gray-600">Your data is protected with Firebase Authentication.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Soham Creation & Publication. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initAuth, logout } from './js/auth.js';
+        initAuth();
+        document.getElementById('logout-btn')?.addEventListener('click', logout);
+    </script>
+</body>
+</html>
